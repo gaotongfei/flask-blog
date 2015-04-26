@@ -114,14 +114,12 @@ def register():
 def post_article():
     title = None
     body = None
-    node = None
     form = PostArticle()
     if form.validate_on_submit():
         title = form.title.data
         body = form.body.data
-        node = form.node.data
 
-    return render_template('post-article.html', form=form, title=title, body=body, node=node)
+    return render_template('post-article.html', form=form, title=title, body=body)
 
 
 if __name__ == '__main__':

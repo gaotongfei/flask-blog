@@ -21,5 +21,4 @@ class RegisterForm(Form):
 class PostArticle(Form):
     title = StringField('标题', validators=[Required()])
     body = TextAreaField('正文', validators=[Required()])
-    node = StringField('节点', validators=[Required()])
     submit = SubmitField('发表')
