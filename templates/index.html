@@ -40,13 +40,15 @@
 <!--content-->
 {% block content %}
     <div class='container'>
-    <h1>
-    Hello,
-    {% if current_user.is_authenticated() %}
-    {{ current_user.username }}
-    {% else %}
-    Stranger.
-    {% endif %}
-    </h1>
+    <ul class="posts">
+        {% for content in contents %}
+        <li class="post">
+            <div class="page-header">
+                <h2>{{ content.title }} <small style="margin-right: 50px;">{{ content.pub_time }} </small></h2>
+            </div>
+            <div class="post-body"> {{ content.body }} </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

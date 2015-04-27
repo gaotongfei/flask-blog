@@ -11,6 +11,7 @@ from forms import LoginForm, RegisterForm, PostArticle
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.login import UserMixin, LoginManager, login_required, login_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 # 初始化
@@ -32,7 +33,7 @@ class Content(db.Model):
     __tablename__ = 'contents'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
-    pub_time = db.Column(db.DateTime)
+    pub_time = db.Column(db.DateTime, default=db.func.now())
     body = db.Column(db.Text)
 
     def __repr__(self):
@@ -75,7 +76,8 @@ def load_user(user_id):
 # 定义路由
 @app.route('/')
 def index():
-    return render_template('index.html')
+    contents = Content.query.order_by(Content.pub_time.desc()).all()
+    return render_template('index.html', contents=contents)
 
 
 @app.route('/login.html', methods=['GET', 'POST'])
@@ -116,9 +118,13 @@ def post_article():
     body = None
     form = PostArticle()
     if form.validate_on_submit():
-        title = form.title.data
-        body = form.body.data
-
+        # title = form.title.data
+        # body = form.body.data
+        content = Content(title=form.title.data,
+                          body=form.body.data)
+        db.session.add(content)
+        db.session.commit()
+        return redirect(url_for('.index'))
     return render_template('post-article.html', form=form, title=title, body=body)
 
 
