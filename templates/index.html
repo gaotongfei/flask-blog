@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block head %}
-  {{ super() }}
+    {{ super() }}
+    <style>
+        #small-title{
+            margin-left: 800px;
+        }
+        .post{
+            list-style-type: none;
+        }
+    </style>
 {% endblock %}
 <!--navbar-->
 {% block nav %}
@@ -44,7 +52,7 @@
         {% for content in contents %}
         <li class="post">
             <div class="page-header">
-                <h2>{{ content.title }} <small style="margin-right: 50px;">{{ content.pub_time }} </small></h2>
+                <h3>{{ content.title }} <small id="small-title">{{ content.pub_time }} </small></h3>
             </div>
             <div class="post-body"> {{ content.body }} </div>
         </li>
