@@ -3,8 +3,21 @@
 {% block head %}
     {{ super() }}
     <style>
-        #small-title{
-            margin-left: 800px;
+        .post{
+            margin-bottom: 20px;
+        }
+        .head{
+        }
+        #title{
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 35px;
+        }
+        #pub-time{
+            font-size: 15px;
+            font-weight: lighter;
+            float: right;
+            line-height: 35px;
         }
         .post{
             list-style-type: none;
@@ -51,11 +64,13 @@
     <ul class="posts">
         {% for content in contents %}
         <li class="post">
-            <div class="page-header">
-                <h3>{{ content.title }} <small id="small-title">{{ content.pub_time }} </small></h3>
+            <div class="head">
+                <span id="title">{{ content.title }}</span><span id="pub-time">{{ content.pub_time }}</span>
+                <hr />
             </div>
             <div class="post-body"> {{ content.body }} </div>
         </li>
+
         {% endfor %}
     </ul>
 </div>

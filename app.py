@@ -10,13 +10,13 @@ from flask.ext.script import Manager
 from forms import LoginForm, RegisterForm, PostArticle
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.login import UserMixin, LoginManager, login_required, login_user
+from flask.ext.pagedown import PageDown
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 # 初始化
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@127.0.0.1/blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@127.0.0.1/blog?charset=utf8'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SECRET_KEY'] = 'i bet you don not know the key'
 db = SQLAlchemy(app)
@@ -27,7 +27,7 @@ manager.add_command('db', MigrateCommand)
 login_manager = LoginManager(app)
 login_manager.session_protection = 'basic'
 login_manager.login_view = 'login'
-
+pagedown = PageDown(app)
 
 class Content(db.Model):
     __tablename__ = 'contents'
