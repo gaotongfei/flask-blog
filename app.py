@@ -13,7 +13,15 @@ from flask.ext.login import UserMixin, LoginManager, login_required, login_user,
 from flask.ext.pagedown import PageDown
 from werkzeug.security import generate_password_hash, check_password_hash
 from markdown import markdown
-import bleach
+import logging
+
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger(__name__)
+try:
+    log.info('start reading database')
+except:
+    _, ex, _ = sys.exc_info()
+    log.error(ex.message)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 # 初始化
@@ -155,4 +163,4 @@ def post_article():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    manager.run()
