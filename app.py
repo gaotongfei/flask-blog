@@ -90,7 +90,7 @@ def load_user(user_id):
 
 
 # 定义路由
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     contents = Content.query.order_by(Content.pub_time.desc()).all()
     return render_template('index.html', contents=contents)
