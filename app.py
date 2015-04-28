@@ -26,7 +26,8 @@ except:
 basedir = os.path.abspath(os.path.dirname(__file__))
 # 初始化
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@127.0.0.1/blog?charset=utf8'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or\
+    'mysql://root:123456@127.0.0.1/blog?charset=utf8'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SECRET_KEY'] = 'i bet you don not know the key'
 db = SQLAlchemy(app)
