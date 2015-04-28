@@ -145,8 +145,8 @@ def register():
                            email=email, username=username, password=password)
 
 
-@login_required
 @app.route('/post-article.html', methods=['GET', 'POST'])
+@login_required
 def post_article():
     title = None
     body = None
