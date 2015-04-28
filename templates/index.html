@@ -23,6 +23,7 @@
             list-style-type: none;
         }
     </style>
+{{ pagedown.html_head() }}
 {% endblock %}
 <!--navbar-->
 {% block nav %}
@@ -68,10 +69,15 @@
                 <span id="title">{{ content.title }}</span><span id="pub-time">{{ content.pub_time }}</span>
                 <hr />
             </div>
-            <div class="post-body"> {{ content.body }} </div>
+            <div class="post-body">
+                {% if content.body_html %}
+                    {{ content.body_html | safe }}
+                {% else %}
+                    {{ content.body }}
+                {% endif %}
+            </div>
         </li>
-
         {% endfor %}
     </ul>
-</div>
+    </div>
 {% endblock %}

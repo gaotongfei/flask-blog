@@ -9,9 +9,11 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.script import Manager
 from forms import LoginForm, RegisterForm, PostArticle
 from flask.ext.migrate import Migrate, MigrateCommand
-from flask.ext.login import UserMixin, LoginManager, login_required, login_user
+from flask.ext.login import UserMixin, LoginManager, login_required, login_user, logout_user
 from flask.ext.pagedown import PageDown
 from werkzeug.security import generate_password_hash, check_password_hash
+from markdown import markdown
+import bleach
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 # 初始化
@@ -29,15 +31,29 @@ login_manager.session_protection = 'basic'
 login_manager.login_view = 'login'
 pagedown = PageDown(app)
 
+
 class Content(db.Model):
     __tablename__ = 'contents'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     pub_time = db.Column(db.DateTime, default=db.func.now())
     body = db.Column(db.Text)
+    body_html = db.Column(db.Text)
 
     def __repr__(self):
         return "<Content %r>" % self.title
+    '''
+    @staticmethod
+    def on_changed_body(target, value, oldvalue, initiator):
+        allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code',
+                        'em', 'i', 'li', 'pre', 'strong', 'ul',
+                        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']
+        target.body_html = bleach.linkify(bleach.clean(
+            markdown(value, output_format='html'),
+            tags=allowed_tags, strip=True))
+
+        db.event.listen(Content.body, 'set', Content.on_changed_body)
+    '''
 
 
 class Role(db.Model):
@@ -98,6 +114,14 @@ def login():
     return render_template('login.html', form=form, email=email, password=password, remember_me=remember_me)
 
 
+@app.route('/logout.html', methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    flash('你已退出登录')
+    return redirect(url_for('index'))
+
+
 @app.route('/register.html', methods=['GET', 'POST'])
 def register():
     email = None
@@ -112,6 +136,7 @@ def register():
                            email=email, username=username, password=password)
 
 
+@login_required
 @app.route('/post-article.html', methods=['GET', 'POST'])
 def post_article():
     title = None
@@ -121,7 +146,8 @@ def post_article():
         # title = form.title.data
         # body = form.body.data
         content = Content(title=form.title.data,
-                          body=form.body.data)
+                          body=form.body.data,
+                          body_html=markdown(form.body.data))
         db.session.add(content)
         db.session.commit()
         return redirect(url_for('.index'))
