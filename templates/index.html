@@ -66,7 +66,7 @@
         {% for content in contents %}
         <li class="post">
             <div class="head">
-                <span id="title">{{ content.title }}</span><span id="pub-time">{{ content.pub_time }}</span>
+                <span id="title">{{ content.title }}</span><span id="pub-time">{{ content.pub_time.strftime('%Y-%m-%d') }}</span>
                 <hr />
             </div>
             <div class="post-body">
