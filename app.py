@@ -181,5 +181,19 @@ def edit(id):
     return render_template('post-article.html', form=form)
 
 
+@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete(id):
+    content = Content.query.get_or_404(id)
+    if content is None:
+        flash('文章不存在')
+        return redirect(url_for('index'))
+    db.session.delete(content)
+    db.session.commit()
+    flash('已删除该文章')
+    return redirect(url_for('index'))
+
+
+
 if __name__ == '__main__':
     manager.run()

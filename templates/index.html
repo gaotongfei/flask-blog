@@ -28,6 +28,12 @@
         #edit{
             float: right;
             margin-top: 8px;
+            margin-left: 2px;
+        }
+        #delete{
+            float: right;
+            margin-top: 8px;
+            margin-left: 2px;
         }
     </style>
 {{ pagedown.html_head() }}
@@ -75,8 +81,12 @@
             <div class="head">
                 <a href="#"><span id="title">{{ content.title }}</span></a>
                 {% if current_user.is_authenticated() %}
+                <a href="{{ url_for('delete', id=content.id) }}">
+                    <span id="delete" class="label label-primary">删除</span>
+                </a>
+
                 <a href="{{ url_for('edit', id=content.id) }}">
-                    <span id="edit" class="label label-primary">编辑</span>
+                    <span id="edit" class="label label-success">编辑</span>
                 </a>
                 <span id="pub-time">{{ content.pub_time.strftime('%Y-%m-%d') }}</span>
                 {% endif %}
