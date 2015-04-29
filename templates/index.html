@@ -84,7 +84,6 @@
                 <a href="{{ url_for('delete', id=content.id) }}">
                     <span id="delete" class="label label-primary">删除</span>
                 </a>
-
                 <a href="{{ url_for('edit', id=content.id) }}">
                     <span id="edit" class="label label-success">编辑</span>
                 </a>
@@ -92,6 +91,7 @@
                 {% endif %}
             </div>
             <div class="post-body">
+                <span class="label label-success">{{ content.category }}</span>
                 {% if content.body_html %}
                     {{ content.body_html | safe }}
                 {% else %}

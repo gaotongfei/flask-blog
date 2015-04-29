@@ -27,7 +27,7 @@
             </ul>
           <!--右边导航栏-->
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="login.html">登录/注册</a></li>
+                <li class="active"><a href="login.html">登录</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated() %}
@@ -43,8 +43,6 @@
     <div class="container container-center">
     {{ wtf.quick_form(form) }}
     <br />
-    <p>没有账号?先<a href="register.html">注册</a>一个吧,喵(●'◡'●)ﾉ♥ </p>
-
     </div>
     <div id="turn-to-register">
     </div>
