@@ -63,6 +63,7 @@ python app.py shell
 python app.py runserver
 ```
 
+默认是在`http://127.0.0.1:5000/`打开.
 点击`登录`,输入你的邮箱和密码
 
 登录后你就可以开始写博客了.
