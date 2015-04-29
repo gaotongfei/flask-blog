@@ -160,7 +160,25 @@ def post_article():
         db.session.add(content)
         db.session.commit()
         return redirect(url_for('.index'))
-    return render_template('post-article.html', form=form, title=title, body=body)
+    return render_template('post-article.html', form=form)
+
+
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    content = Content.query.get_or_404(id)
+    form = PostArticle()
+    if form.validate_on_submit():
+        content = Content(title=form.title.data,
+                          body=form.body.data,
+                          body_html=markdown(form.body.data))
+        flash('你已经更新')
+        db.session.add(content)
+        db.session.commit()
+        return redirect(url_for('index'))
+    form.body.data = content.body
+    form.title.data = content.title
+    return render_template('post-article.html', form=form)
 
 
 if __name__ == '__main__':

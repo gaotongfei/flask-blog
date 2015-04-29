@@ -3,8 +3,11 @@
 {% block head %}
     {{ super() }}
     <style>
-        .post{
-            margin-bottom: 20px;
+        a{
+            color: #485F6E;
+        }
+        .post-body{
+            margin-bottom: 70px;
         }
         .head{
         }
@@ -21,6 +24,9 @@
         }
         .post{
             list-style-type: none;
+        }
+        #edit{
+            float: right;
         }
     </style>
 {{ pagedown.html_head() }}
@@ -66,8 +72,13 @@
         {% for content in contents %}
         <li class="post">
             <div class="head">
-                <span id="title">{{ content.title }}</span><span id="pub-time">{{ content.pub_time.strftime('%Y-%m-%d') }}</span>
-                <hr />
+                <a href="#"><span id="title">{{ content.title }}</span></a>
+                {% if current_user.is_authenticated() %}
+                <a href="{{ url_for('edit', id=content.id) }}">
+                    <span id="edit" class="label label-primary">编辑</span>
+                </a>
+                <span id="pub-time">{{ content.pub_time.strftime('%Y-%m-%d') }}</span>
+                {% endif %}
             </div>
             <div class="post-body">
                 {% if content.body_html %}
