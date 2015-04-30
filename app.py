@@ -48,7 +48,7 @@ class Content(db.Model):
     pub_time = db.Column(db.DateTime, default=db.func.now())
     body = db.Column(db.Text)
     body_html = db.Column(db.Text)
-    category = db.Column(db.String(10), default='其他')
+    category = db.Column(db.String(10))
 
     def __repr__(self):
         return "<Content %r>" % self.title
