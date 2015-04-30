@@ -48,7 +48,7 @@ class Content(db.Model):
     pub_time = db.Column(db.DateTime, default=db.func.now())
     body = db.Column(db.Text)
     body_html = db.Column(db.Text)
-    category = db.Column(db.String(10), default=)
+    category = db.Column(db.String(10), default='其他')
 
     def __repr__(self):
         return "<Content %r>" % self.title
@@ -180,6 +180,11 @@ def delete(id):
     db.session.commit()
     flash('已删除该文章')
     return redirect(url_for('index'))
+
+@app.route('/article/<int:id>')
+def article(id):
+    content = Content.query.get_or_404(id)
+    return render_template('article.html', content=content)
 
 if __name__ == '__main__':
     manager.run()
