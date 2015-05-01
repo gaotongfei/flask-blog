@@ -92,11 +92,7 @@
             </div>
             <div class="post-body">
                 <span class="label label-success">{{ content.category }}</span>
-                {% if content.body_html %}
                     {{ content.body_html | safe }}
-                {% else %}
-                    {{ content.body }}
-                {% endif %}
             </div>
         </li>
         {% endfor %}
