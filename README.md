@@ -3,6 +3,7 @@
 ### 如何使用:
 
 ####Linux(ubuntu)
+打开终端
 
 安装pip,和virtualenv
 
@@ -39,6 +40,20 @@ source venv/bin/activate
 
 ```
 pip install -r requirements.txt
+```
+数据库:mysql
+
+创建名为blog的数据库
+
+当然如果想要创建别的名字的数据库,只要把`app.py`中`SQLALCHEMY_DATABASE_URI`中的blog改为你创建的数据库名称.
+
+默认mysql用户名为root,密码为123456
+
+不是的话自己改一下`SQLALCHEMY_DATABASE_URI`中对应内容就好
+
+```
+mysql -u your-username -pyour-password
+create database blog;
 ```
 
 添加管理员账号
