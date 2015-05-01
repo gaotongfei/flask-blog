@@ -159,6 +159,7 @@ def edit(id):
     form = PostArticle()
     if form.validate_on_submit():
         content.title = form.title.data
+        content.body = form.body.data
         content.body_html = markdown(form.body.data)
         db.session.add(content)
         flash('你已经更新')
