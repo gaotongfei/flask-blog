@@ -74,7 +74,9 @@
 {% endblock %}
 <!--content-->
 {% block content %}
-    <div class='container'>
+    <div class='row'>
+    <div class='col-md-2'></div>
+    <div class='col-md-8'>
     <ul class="posts">
         {% for content in contents %}
         <li class="post">
@@ -97,5 +99,7 @@
         </li>
         {% endfor %}
     </ul>
+    </div>
+    <div class='col-md-2'></div>
     </div>
 {% endblock %}
