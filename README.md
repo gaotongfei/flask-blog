@@ -65,7 +65,7 @@ python app.py shell
 ```
 >>>from app import db, User
 >>>Admin = User(email=’name@example.com’,username=’name’,password=’your-password’)
-# 把email,username,password换成你的.
+ 把email,username,password换成你的.
 >>>db.session.add(Admin)
 >>>db.session.commit()
 ```
@@ -84,5 +84,17 @@ python app.py runserver
 登录后你就可以开始写博客了.
 
 目前支持markdown写作
+
+### 截图
+
+![1](/screen_shot/1.png)
+
+---
+
+![2](/screen_shot/2.png)
+
+---
+
+![3](/screen_shot/3.png)
 
 
