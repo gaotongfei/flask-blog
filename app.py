@@ -186,5 +186,13 @@ def article(id):
     content = Content.query.get_or_404(id)
     return render_template('article.html', content=content)
 
+
+@app.route('/admin.html', methods=['GET', 'POST'])
+@login_required
+def admin():
+    contents = Content.query.order_by(Content.pub_time.desc()).all()
+    return render_template('admin.html', contents=contents)
+
+
 if __name__ == '__main__':
     manager.run()
