@@ -40,8 +40,6 @@
 
 {% block content %}
     <div class="container container-center">
-    <!--{{ wtf.quick_form(form) }}-->
-
         <form method="post">
             {{ form.hidden_tag() }}
             {{ form.title.label }}
@@ -52,7 +50,5 @@
             {{ form.category(class='form-control') }}
             {{ form.submit(class='btn btn-default') }}
         </form>
-    </div>
-    <div id="turn-to-register">
     </div>
 {% endblock %}
