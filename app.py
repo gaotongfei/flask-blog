@@ -48,6 +48,7 @@ class Content(db.Model):
     pub_time = db.Column(db.DateTime, default=db.func.now())
     body = db.Column(db.Text)
     body_html = db.Column(db.Text)
+    abstract = db.Column(db.Text)
     category = db.Column(db.String(10))
 
     def __repr__(self):
@@ -145,6 +146,7 @@ def post_article():
         content = Content(title=form.title.data,
                           body=form.body.data,
                           category=form.category.data,
+                          abstract=form.abstract.data,
                           body_html=markdown(form.body.data))
         db.session.add(content)
         db.session.commit()
@@ -160,12 +162,18 @@ def edit(id):
     if form.validate_on_submit():
         content.title = form.title.data
         content.body = form.body.data
+        content.abstract = form.abstract.data
         content.body_html = markdown(form.body.data)
-        db.session.add(content)
+        content.category = form.category.data
+        db.session.commit()
         flash('你已经更新')
         return redirect(url_for('index'))
     form.body.data = content.body
     form.title.data = content.title
+    form.abstract.data = content.abstract
+    form.category.data = content.category
+
+
     return render_template('post-article.html', form=form)
 
 

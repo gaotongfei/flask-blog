@@ -4,13 +4,25 @@
 {{ pagedown.html_head() }}
     {{ super() }}
     <style>
+        a{
+        }
         #title{
-            font-size: 30px;
-            font-weight: bold;
             line-height: 35px;
         }
         .post{
             list-style-type: none;
+        }
+        .post-body{
+            font-weight: normal;
+            font-size: 16px;
+        }
+        .label-default{
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+        #pub_time{
+            margin-top: 5px;
         }
     </style>
 {% endblock %}
@@ -55,13 +67,15 @@
     <ul class="posts">
         <li class="post">
             <div class="head">
-                <a href="{{ url_for('article', id=content.id)}}"><span id="title">{{ content.title }}</span></a>
-                <span id="pub-time">{{ content.pub_time.strftime('%y-%m-%d') }}</span>
+                <a href="{{ url_for('article', id=content.id)}}"><h1 id="title">{{ content.title }}</h1></a>
+                <div id="pub_time">{{ content.pub_time.strftime('%y-%m-%d') }}</div>
             </div>
+            <hr>
             <div class="post-body">
-                <span class="label label-success">{{ content.category }}</span>
                     {{ content.body_html | safe }}
             </div>
+            <span class="glyphicon glyphicon-tags"></span> &nbsp;&nbsp;
+            <span class="label label-default"><a>{{ content.category }}</a></span>
         </li>
     </ul>
     </div>

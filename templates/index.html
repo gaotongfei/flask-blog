@@ -4,7 +4,6 @@
     {{ super() }}
     <style>
         a{
-            color: #485F6E;
         }
         .post-body{
             margin-bottom: 20px;
@@ -34,6 +33,20 @@
             float: right;
             margin-top: 8px;
             margin-left: 2px;
+        }
+        #abstract{
+            font-size: medium;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .label-default{
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+        /*从snipple.footer.html中include过来*/
+        #footer{
+            margin-bottom: 20px;
         }
     </style>
 {{ pagedown.html_head() }}
@@ -82,34 +95,21 @@
     <ul class="posts">
         {% for content in contents %}
         <li class="post">
-            <!--<div class="head">-->
-                <!--
-                <a href="{{ url_for('article', id=content.id )}}"><span id="title">{{ content.title }}</span></a>
-                -->
             <a href="{{ url_for('article', id=content.id )}}"><h3>{{ content.title }}</h3></a>
-                <!--
-                {% if current_user.is_authenticated() %}
-                <a href="{{ url_for('delete', id=content.id) }}">
-                    <span id="delete" class="label label-primary">删除</span>
-                </a>
-                <a href="{{ url_for('edit', id=content.id) }}">
-                    <span id="edit" class="label label-success">编辑</span>
-                </a>
-                {% endif %}
-                -->
-            <!--</div>-->
-            <!--
-            <div class="post-body">
-                <span class="label label-success">{{ content.category }}</span>
-                    {{ content.body_html | safe }}
-            </div>
-            -->
             {{ content.pub_time.strftime('%y-%m-%d') }}
-            <div class="post-body"><span class="label label-success">{{ content.category }}</span></div>
+            {% if content.abstract %}
+            <div id="abstract">{{ content.abstract }}</div>
+            {% endif %}
+            <span class="glyphicon glyphicon-tags"></span> &nbsp;&nbsp;
+            <span class="label label-default">{{ content.category }}</span>
+            <hr>
         </li>
         {% endfor %}
     </ul>
     </div>
     <div class='col-md-2'></div>
     </div>
+{% endblock %}
+{% block footer %}
+{% include "snipple/footer.html" %}
 {% endblock %}

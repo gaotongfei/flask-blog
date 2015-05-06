@@ -1,5 +1,15 @@
 {% extends "base.html" %}
-{% block head %}{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+        #title{
+            font-size: 20px;
+        }
+        #delete{
+            float: right;
+        }
+    </style>
+{% endblock %}
 {% block nav %}
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -31,9 +41,14 @@
 {% block content %}
 {% if current_user.is_authenticated() %}
 <div id="post" class="container">
-{% for content in contents %}
-    <h2>{{ content.title }}</h2>
-{% endfor %}
+    <ul>
+        {% for content in contents %}
+        <li style="list-style-type: none">
+            <a href="{{ url_for('edit', id=content.id )}}"><span id="title">{{ content.title }}</span></a>
+            <a href="{{ url_for('delete', id=content.id) }}"><span id="delete" class="label label-primary">删除</span></a>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endif %}
 {% endblock %}

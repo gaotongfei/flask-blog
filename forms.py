@@ -24,5 +24,6 @@ class PostArticle(Form):
     # body = TextAreaField('正文', validators=[Required()])
     title = StringField('标题', validators=[Required()])
     body = PageDownField('正文', validators=[Required()])
-    category = StringField('分类')
+    abstract = TextAreaField('简介', validators=[Required()])
+    category = StringField('分类', validators=[Required()])
     submit = SubmitField('发表')
