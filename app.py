@@ -103,8 +103,13 @@ def load_user(user_id):
 # 定义路由
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    contents = Content.query.order_by(Content.pub_time.desc()).all()
-    return render_template('index.html', contents=contents)
+    page = request.args.get('page', 1, type=int)
+    pagination = Content.query.order_by(Content.pub_time.desc()).paginate(
+        page, per_page=10, error_out=False
+    )
+    contents = pagination.items
+    # contents = Content.query.order_by(Content.pub_time.desc()).all()
+    return render_template('index.html', contents=contents, pagination=pagination)
 
 
 @app.route('/login.html', methods=['GET', 'POST'])

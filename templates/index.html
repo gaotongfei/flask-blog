@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "marco.html" as marco %}
 {% block title %}首页{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -46,7 +47,9 @@
             border: 1px solid #ddd;
             color: #333;
         }
-        /*从snipple.footer.html中include过来*/
+        #pagination{
+            margin-top: 5px;
+        }
     </style>
 {{ pagedown.html_head() }}
 {% endblock %}
@@ -110,5 +113,16 @@
     </div>
 {% endblock %}
 {% block footer %}
+<div class="container" >
+    <div class="row" id="pagination">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="pagination">
+                {{ marco.pagination_widget(pagination, '.index') }}
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
 {% include "snipple/footer.html" %}
 {% endblock %}
