@@ -1,4 +1,16 @@
 #footer{
     margin-bottom: 20px;
-    text-align: center;
+    font-size: 16px;
+}
+#social{
+    font-size: 20px;
+    float: right;
+}
+
+#social a{
+    color: #000000;
+}
+
+#social a:hover{
+    color: #265a88;
 }
