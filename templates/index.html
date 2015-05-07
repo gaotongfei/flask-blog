@@ -2,7 +2,8 @@
 {% block title %}首页{% endblock %}
 {% block head %}
     {{ super() }}
-    <style>
+    <style type="text/css">
+        {% include "snipple/footer.css" %}
         a{
         }
         .post-body{
@@ -45,9 +46,6 @@
             color: #333;
         }
         /*从snipple.footer.html中include过来*/
-        #footer{
-            margin-bottom: 20px;
-        }
     </style>
 {{ pagedown.html_head() }}
 {% endblock %}

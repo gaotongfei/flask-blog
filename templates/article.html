@@ -4,6 +4,7 @@
 {{ pagedown.html_head() }}
     {{ super() }}
     <style>
+        {% include "snipple/footer.css" %}
         a{
         }
         #title{
@@ -78,8 +79,12 @@
             <span class="label label-default"><a>{{ content.category }}</a></span>
         </li>
     </ul>
+    <hr>
     </div>
     <div class='col-md-2'></div>
     </div>
     </div>
+{% endblock %}
+{% block footer %}
+{% include "snipple/footer.html" %}
 {% endblock %}
