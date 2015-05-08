@@ -87,16 +87,24 @@ create database blog;
 
 ### 截图
 
+登录
+
 ![1](/screen_shot/1.png)
 
 ---
+
+发表文章
 
 ![2](/screen_shot/2.png)
 
 ---
 
+首页
+
 ![3](/screen_shot/3.png)
 
 ---
+
+后台管理
 
 ![4](/screen_shot/4.png)
