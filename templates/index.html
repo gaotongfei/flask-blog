@@ -92,8 +92,8 @@
 <!--content-->
 {% block content %}
     <div class='row'>
-    <div class='col-md-2'></div>
-    <div class='col-md-8'>
+    <div class='col-md-3'></div>
+    <div class='col-md-6'>
     <ul class="posts">
         {% for content in contents %}
         <li class="post">
@@ -109,19 +109,19 @@
         {% endfor %}
     </ul>
     </div>
-    <div class='col-md-2'></div>
+    <div class='col-md-3'></div>
     </div>
 {% endblock %}
 {% block footer %}
 <div class="container" >
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
             <div class="pagination">
                 {{ macro.pagination_widget(pagination, 'index') }}
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 {% include "snipple/footer.html" %}

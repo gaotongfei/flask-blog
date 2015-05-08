@@ -69,7 +69,7 @@
     <ul class="posts">
         <li class="post">
             <div class="head">
-                <a href="{{ url_for('article', id=content.id)}}"><h1 id="title">{{ content.title }}</h1></a>
+                <a href="{{ url_for('article', id=content.id)}}"><h2 id="title">{{ content.title }}</h2></a>
                 <div id="pub_time">{{ content.pub_time.strftime('%b %d %Y') }}</div>
             </div>
             <hr>
