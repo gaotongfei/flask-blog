@@ -9,7 +9,7 @@
 
 ```
 $ sudo apt-get install python-pip
-$ sudo apt-get install virtualenv
+$ sudo apt-get install python-virtualenv
 ```
 
 从仓库中clone程序
