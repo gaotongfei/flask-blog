@@ -141,9 +141,6 @@ def logout():
 @app.route('/post-article.html', methods=['GET', 'POST'])
 @login_required
 def post_article():
-    title = None
-    body = None
-    category = None
     form = PostArticle()
     if form.validate_on_submit():
         # title = form.title.data
@@ -152,6 +149,7 @@ def post_article():
                           body=form.body.data,
                           category=form.category.data,
                           abstract=form.abstract.data,
+                          pub_time=form.pub_time.data,
                           body_html=markdown(form.body.data))
         db.session.add(content)
         db.session.commit()
