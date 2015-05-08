@@ -44,7 +44,7 @@
     <ul>
         {% for content in contents %}
         <li style="list-style-type: none">
-            <a href="{{ url_for('.edit', id=content.id )}}"><span id="title">{{ content.title }}</span></a>
+            <a href="{{ url_for('edit', id=content.id )}}"><span id="title">{{ content.title }}</span></a>
             <a href="{{ url_for('delete', id=content.id) }}"><span id="delete" class="label label-primary">删除</span></a>
         </li>
         {% endfor %}
