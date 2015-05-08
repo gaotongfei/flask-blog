@@ -15,7 +15,7 @@ $ sudo apt-get install virtualenv
 从仓库中clone程序
 
 ```
-$ git clone https://github.com:gaotongfei/flask-blog.git
+$ git clone https://github.com/gaotongfei/flask-blog.git
 ```
 
 进入目录
