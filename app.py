@@ -167,7 +167,8 @@ def edit(id):
         content.body = form.body.data
         content.abstract = form.abstract.data
         content.body_html = markdown(form.body.data)
-        content.category = form.category.data
+        content.category = form.category.dataa
+        content.pub_time = form.pub_time.data
         db.session.commit()
         flash('你已经更新')
         return redirect(url_for('index'))
@@ -175,6 +176,7 @@ def edit(id):
     form.title.data = content.title
     form.abstract.data = content.abstract
     form.category.data = content.category
+    form.pub_time.data = content.pub_time
 
 
     return render_template('post-article.html', form=form)
