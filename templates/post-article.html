@@ -43,13 +43,13 @@
         <form method="post">
             {{ form.hidden_tag() }}
             {{ form.title.label }}
-            {{ form.title(class='form-control') }}
+            {{ form.title(class='form-control', placeholder='必填') }}
             {{ form.body.label }}
-            {{ form.body(rows=20,cols=80, class='form-control')}}
+            {{ form.body(rows=20,cols=80, class='form-control', placeholder='必填')}}
             {{ form.abstract.label }}
-            {{ form.abstract(rows=5,cols=80,class='form-control')}}
+            {{ form.abstract(rows=5,cols=80,class='form-control', placeholder='必填')}}
             {{ form.category.label }}
-            {{ form.category(class='form-control') }}
+            {{ form.category(class='form-control', placeholder='必填') }}
             {{ form.pub_time.label }}
             {{ form.pub_time(class='form-control', placeholder='例如: 2015-05-08 或 2015-05-08 15:30:09, 不填默认当前时间') }}
             {{ form.submit(class='btn btn-default') }}

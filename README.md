@@ -8,38 +8,38 @@
 安装pip,和virtualenv
 
 ```
-sudo apt-get install python-pip
-sudo apt-get install virtualenv
+$ sudo apt-get install python-pip
+$ sudo apt-get install virtualenv
 ```
 
 从仓库中clone程序
 
 ```
-git clone https://github.com:gaotongfei/flask-blog.git
+$ git clone https://github.com:gaotongfei/flask-blog.git
 ```
 
 进入目录
 
 ```
-cd flask-blog
+$ cd flask-blog
 ```
 
 创建python虚拟环境
 
 ```
-virtualenv venv
+$ virtualenv venv
 ```
 
 启动虚拟环境
 
 ```
-source venv/bin/activate
+$ source venv/bin/activate
 ```
 
 安装依赖
 
 ```
-pip install -r requirements.txt
+(venv) pip install -r requirements.txt
 ```
 数据库:mysql
 
@@ -59,13 +59,13 @@ create database blog;
 添加管理员账号
 
 ```
-python app.py shell
+(venv) python app.py shell
 ```
 
 ```
 >>>from app import db, User
 >>>Admin = User(email=’name@example.com’,username=’name’,password=’your-password’)
- 把email,username,password换成你的.
+# 把email,username,password换成你的.
 >>>db.session.add(Admin)
 >>>db.session.commit()
 ```
@@ -75,7 +75,7 @@ python app.py shell
 运行程序
 
 ```
-python app.py runserver
+(venv) python app.py runserver
 ```
 
 默认是在`http://127.0.0.1:5000/`打开.
@@ -97,4 +97,6 @@ python app.py runserver
 
 ![3](/screen_shot/3.png)
 
+---
 
+![4](/screen_shot/4.png)
