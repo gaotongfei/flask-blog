@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% import "marco.html" as marco %}
+{% import "macro.html" as macro %}
 {% block title %}首页{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -118,7 +118,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <div class="pagination">
-                {{ marco.pagination_widget(pagination, '.index') }}
+                {{ macro.pagination_widget(pagination, 'index') }}
             </div>
         </div>
         <div class="col-md-2"></div>
