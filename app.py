@@ -7,13 +7,15 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.script import Manager
-from forms import LoginForm, RegisterForm, PostArticle
+from forms import LoginForm, PostArticle
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.login import UserMixin, LoginManager, login_required, login_user, logout_user
 from flask.ext.pagedown import PageDown
 from werkzeug.security import generate_password_hash, check_password_hash
 from markdown import markdown
 import logging
+from datetime import datetime
+
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
@@ -45,7 +47,7 @@ class Content(db.Model):
     __tablename__ = 'contents'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
-    pub_time = db.Column(db.DateTime, default=db.func.now())
+    pub_time = db.Column(db.DateTime)
     body = db.Column(db.Text)
     body_html = db.Column(db.Text)
     abstract = db.Column(db.Text)
@@ -142,6 +144,7 @@ def logout():
 @login_required
 def post_article():
     form = PostArticle()
+    form.pub_time.data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     if form.validate_on_submit():
         # title = form.title.data
         # body = form.body.data

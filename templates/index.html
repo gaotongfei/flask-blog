@@ -98,7 +98,7 @@
         {% for content in contents %}
         <li class="post">
             <a href="{{ url_for('article', id=content.id )}}"><h3>{{ content.title }}</h3></a>
-            {{ content.pub_time.strftime('%b %d %Y') }}
+            {{ content.pub_time.strftime('%Y %m %d') }}
             {% if content.abstract %}
             <div id="abstract">{{ content.abstract }}</div>
             {% endif %}
