@@ -119,3 +119,9 @@ create database blog;
 后台管理
 
 ![4](/screen_shot/4.png)
+
+---
+
+### license
+
+ WTFP
