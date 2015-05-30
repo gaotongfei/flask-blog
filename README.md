@@ -75,6 +75,7 @@ create database blog;
 
 ```
 >>>from app import db, User
+>>>db.create_all()
 >>>Admin = User(email=’name@example.com’,username=’name’,password=’your-password’)
 # 把email,username,password换成你的.
 >>>db.session.add(Admin)
