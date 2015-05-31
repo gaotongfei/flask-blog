@@ -15,7 +15,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from markdown import markdown
 import logging
 from datetime import datetime
-
+import config
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
@@ -209,6 +209,11 @@ def article(id):
 def admin():
     contents = Content.query.order_by(Content.pub_time.desc()).all()
     return render_template('admin.html', contents=contents)
+
+
+@app.route('/search/<keyword>', methods=['GET'])
+def search(keyword):
+    return redirect('http://www.google.com/search?q=site:' + config.site_url + '/article' + ' ' + keyword)
 
 
 if __name__ == '__main__':
