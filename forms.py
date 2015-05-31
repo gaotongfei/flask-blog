@@ -14,7 +14,7 @@ class LoginForm(Form):
 
 class RegisterForm(Form):
     email = StringField('电子邮箱:', validators=[Email(), Required()])
-    username = StringField('用户名:' ,validators=[Required()])
+    username = StringField('用户名:', validators=[Required()])
     password = PasswordField('密码', validators=[Required()])
     submit = SubmitField('提交')
 
