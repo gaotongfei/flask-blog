@@ -50,15 +50,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li {% if current == 'about' %}class="active"{% endif %}><a href="#">关于</a></li>
                 {% if current_user.is_authenticated() %}
-                <li><a href="logout.html">登出</a></li>
+                <li><a href="/logout.html">登出</a></li>
                 {% else %}
-                <li {% if current == 'login' %}class="active"{% endif %}><a href="login.html">登录</a></li>
+                <li {% if current == 'login' %}class="active"{% endif %}><a href="/login.html">登录</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated() %}
-                <li {% if current == 'post-article' %}class="active"{% endif %}><a href="post-article.html">发表文章</a></li>
-                <li {% if current == 'admin' %}class="active"{% endif %}><a href="admin.html">管理</a></li>
+                <li {% if current == 'post-article' %}class="active"{% endif %}><a href="/post-article.html">发表文章</a></li>
+                <li {% if current == 'admin' %}class="active"{% endif %}><a href="/admin.html">管理</a></li>
                 {% endif %}
             </ul>
         </div>
