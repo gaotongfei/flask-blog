@@ -166,11 +166,12 @@ def edit(id):
     content = Content.query.get_or_404(id)
     form = PostArticle()
     if form.validate_on_submit():
+        # 这段写的好丑。。。不知道有什么优雅的方法。。。
         content.title = form.title.data
         content.body = form.body.data
         content.abstract = form.abstract.data
         content.body_html = markdown(form.body.data)
-        content.category = form.category.dataa
+        content.category = form.category.data
         content.pub_time = form.pub_time.data
         db.session.commit()
         flash('你已经更新')
