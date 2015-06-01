@@ -24,7 +24,6 @@ try:
 except:
     _, ex, _ = sys.exc_info()
     log.error(ex.message)
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 # 初始化
 app = Flask(__name__)
@@ -32,6 +31,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or\
     'mysql://root:123456@127.0.0.1/blog?charset=utf8&use_unicode=0'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SECRET_KEY'] = 'i bet you don not know the key'
+app.config['DEFAULT'] = None
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 manager = Manager(app)
@@ -213,7 +213,7 @@ def admin():
 
 @app.route('/search/<keyword>', methods=['GET'])
 def search(keyword):
-    return redirect('http://www.google.com/search?q=site:' + config.site_url + '/article' + ' ' + keyword)
+    return redirect('http://www.google.com/search?q=site:' + config.site_url + ' ' + keyword)
 
 
 if __name__ == '__main__':
