@@ -210,6 +210,9 @@ def admin():
     contents = Content.query.order_by(Content.pub_time.desc()).all()
     return render_template('admin.html', contents=contents)
 
+@app.route('/resume')
+def resume():
+    return render_template('resume.html')
 
 @app.route('/search/<keyword>', methods=['GET'])
 def search(keyword):
