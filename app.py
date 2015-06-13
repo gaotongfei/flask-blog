@@ -3,7 +3,7 @@ import os
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, send_from_directory
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.script import Manager
@@ -210,9 +210,15 @@ def admin():
     contents = Content.query.order_by(Content.pub_time.desc()).all()
     return render_template('admin.html', contents=contents)
 
+'''
 @app.route('/resume')
 def resume():
     return render_template('resume.html')
+'''
+
+@app.route('/resume')
+def resume():
+    return send_from_directory("static", "resume.pdf")
 
 @app.route('/search/<keyword>', methods=['GET'])
 def search(keyword):
