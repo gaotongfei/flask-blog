@@ -124,5 +124,4 @@ create database blog;
 ---
 
 ### license
-
- WTFP
+GPLv3
